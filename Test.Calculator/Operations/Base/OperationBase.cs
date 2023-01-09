@@ -131,14 +131,14 @@ public abstract class OperationBase
     {
         if (AddParenthesesOnPrinting)
         {
-            stringBuilder.Append("(");
+            stringBuilder.Append('(');
         }
 
         AppendMath(stringBuilder);
     
         if (AddParenthesesOnPrinting)
         {
-            stringBuilder.Append(")");
+            stringBuilder.Append(')');
         }
     }
 

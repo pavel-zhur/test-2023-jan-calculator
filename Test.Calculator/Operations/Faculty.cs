@@ -51,6 +51,7 @@ public class Faculty : OperationBase
             return double.PositiveInfinity;
         }
 
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
         if (intOperand != doubleOperand) // not an integer
         {
             throw new NonIntegerFacultyException(doubleOperand);
@@ -68,6 +69,6 @@ public class Faculty : OperationBase
     protected override void AppendMath(StringBuilder stringBuilder)
     {
         AppendMathWithParentheses(stringBuilder, _operand);
-        stringBuilder.Append("!");
+        stringBuilder.Append('!');
     }
 }

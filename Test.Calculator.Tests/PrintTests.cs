@@ -101,7 +101,7 @@ public class PrintTests
     /// <param name="expectedPrint">The expression .Print() is expected to return.</param>
     /// <param name="expectedPrintSentence">The expression .PrintSentence() is expected to return.</param>
     /// <param name="operation">The operation to test.</param>
-    private void AssertPrints(
+    private static void AssertPrints(
         string expectedPrint,
         string expectedPrintSentence,
         OperationBase operation)
