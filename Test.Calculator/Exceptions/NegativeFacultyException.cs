@@ -1,5 +1,10 @@
-﻿namespace Test.Calculator.Exceptions;
+﻿using Test.Calculator.Operations;
 
+namespace Test.Calculator.Exceptions;
+
+/// <summary>
+/// This exception is thrown by the <see cref="Faculty"/> operation when the operand value is negative.
+/// </summary>
 public class NegativeFacultyException : MathException
 {
     public NegativeFacultyException(double value)

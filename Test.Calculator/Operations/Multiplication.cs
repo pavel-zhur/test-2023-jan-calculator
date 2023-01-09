@@ -2,10 +2,19 @@
 
 namespace Test.Calculator.Operations;
 
+/// <summary>
+/// A multiplication operation.
+/// </summary>
 public class Multiplication : OperationBase
 {
     private readonly IReadOnlyList<OperationBase> _operands;
 
+    /// <summary>
+    /// Creates a new instance of the <see cref="Multiplication"/> operation.
+    /// </summary>
+    /// <param name="operand1">The first operand.</param>
+    /// <param name="operand2">The second operand.</param>
+    /// <param name="operands">Any additional operands.</param>
     public Multiplication(OperationBase operand1, OperationBase operand2, params OperationBase[] operands)
     {
         if (operands == null) throw new ArgumentNullException(nameof(operands));

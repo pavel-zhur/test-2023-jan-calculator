@@ -2,11 +2,19 @@
 
 namespace Test.Calculator.Operations;
 
+/// <summary>
+/// A constant operation representing a fraction of two doubles.
+/// </summary>
 public class Fraction : OperationBase
 {
     private readonly double _operand1;
     private readonly double _operand2;
 
+    /// <summary>
+    /// Creates a new instance of the <see cref="Fraction"/> operation.
+    /// </summary>
+    /// <param name="operand1">The left operand.</param>
+    /// <param name="operand2">The right operand.</param>
     public Fraction(double operand1, double operand2)
     {
         _operand1 = operand1;

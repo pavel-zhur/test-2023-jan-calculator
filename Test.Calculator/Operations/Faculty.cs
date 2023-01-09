@@ -3,10 +3,17 @@ using Test.Calculator.Operations.Base;
 
 namespace Test.Calculator.Operations;
 
+/// <summary>
+/// A faculty, a.k.a. factorial operation.
+/// </summary>
 public class Faculty : OperationBase
 {
     private readonly OperationBase _operand;
 
+    /// <summary>
+    /// Creates a new instance of the <see cref="Faculty"/> operation.
+    /// </summary>
+    /// <param name="operand">The faculty operand.</param>
     public Faculty(OperationBase operand)
     {
         _operand = operand;
