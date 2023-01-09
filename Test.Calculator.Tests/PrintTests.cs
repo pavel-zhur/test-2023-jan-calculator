@@ -6,9 +6,15 @@ using Test.Calculator.Operations.Base;
 
 namespace Test.Calculator.Tests;
 
+/// <summary>
+/// Extended tests of the <see cref="OperationBase.Print"/> and <see cref="OperationBase.PrintSentence"/> methods.
+/// </summary>
 [TestClass]
 public class PrintTests
 {
+    /// <summary>
+    /// A complex expression test.
+    /// </summary>
     [TestMethod]
     public void PrintComplex()
     {
@@ -19,6 +25,9 @@ public class PrintTests
                 new Sum(new Sum(3, 4, 5, 6), new Multiplication(3, 4, 5), new Constant(44))));
     }
 
+    /// <summary>
+    /// A nested faculty expression test.
+    /// </summary>
     [TestMethod]
     public void PrintNestedFaculty()
     {
@@ -28,6 +37,9 @@ public class PrintTests
             new Faculty(new Faculty(new Faculty(2))));
     }
 
+    /// <summary>
+    /// An infinity test.
+    /// </summary>
     [TestMethod]
     public void PrintInfinity()
     {
@@ -37,6 +49,9 @@ public class PrintTests
             new Division(3, 0));
     }
 
+    /// <summary>
+    /// A NaN test.
+    /// </summary>
     [TestMethod]
     public void PrintNaN()
     {
@@ -46,6 +61,9 @@ public class PrintTests
             new Subtraction(new Division(3, 0), new Division(3, 0)));
     }
 
+    /// <summary>
+    /// A faculty pass-through of the NaN test.
+    /// </summary>
     [TestMethod]
     public void PrintFacultyNaNPassThrough()
     {
@@ -55,6 +73,9 @@ public class PrintTests
             new Faculty(new Subtraction(new Division(3, 0), new Division(3, 0))));
     }
 
+    /// <summary>
+    /// A faculty pass-through of the positive infinity test.
+    /// </summary>
     [TestMethod]
     public void PrintPositiveInfinityFacultyPassThrough()
     {
@@ -64,12 +85,15 @@ public class PrintTests
             new Faculty(new Division(3, 0)));
     }
 
+    /// <summary>
+    /// A faculty exception test.
+    /// </summary>
     [TestMethod]
     public void PrintFacultyThrows()
     {
-        AssertPrintsAndThrows<NonIntegerFacultyException>(
-            "faculty of division of 5 by 2 could not be calculated precisely. A faculty of a non-integer 2.5 could not be calculated, only whole numbers are supported.",
-            new Faculty(new Division(5, 2)));
+        OperationBase operation = new Faculty(new Division(5, 2));
+        Assert.ThrowsException<NonIntegerFacultyException>(operation.Print);
+        Assert.AreEqual("faculty of division of 5 by 2 could not be calculated precisely. A faculty of a non-integer 2.5 could not be calculated, only whole numbers are supported.", operation.PrintSentence());
     }
 
     /// <summary>
@@ -84,20 +108,6 @@ public class PrintTests
         OperationBase operation)
     {
         Assert.AreEqual(expectedPrint, operation.Print());
-        Assert.AreEqual(expectedPrintSentence, operation.PrintSentence());
-    }
-
-    /// <summary>
-    /// Assert that the .Print() returns one expression and the .PrintSentence() returns another expression.
-    /// </summary>
-    /// <param name="expectedPrintSentence">The expression .PrintSentence() is expected to return.</param>
-    /// <param name="operation">The operation to test.</param>
-    private void AssertPrintsAndThrows<TException>(
-        string expectedPrintSentence,
-        OperationBase operation) 
-        where TException : Exception
-    {
-        Assert.ThrowsException<TException>(operation.Print);
         Assert.AreEqual(expectedPrintSentence, operation.PrintSentence());
     }
 }
