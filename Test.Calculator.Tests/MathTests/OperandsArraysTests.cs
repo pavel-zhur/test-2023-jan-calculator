@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Test.Calculator.Operations;
 using Test.Calculator.Operations.Base;
 
-namespace Test.Calculator.Tests;
+namespace Test.Calculator.Tests.MathTests;
 
 /// <summary>
 /// These tests test that the operations are immutable.

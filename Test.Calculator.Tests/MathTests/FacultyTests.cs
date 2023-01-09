@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Test.Calculator.Exceptions;
 using Test.Calculator.Operations;
 
-namespace Test.Calculator.Tests;
+namespace Test.Calculator.Tests.MathTests;
 
 /// <summary>
 /// Tests for the <see cref="Faculty"/> operation.

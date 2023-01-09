@@ -23,9 +23,12 @@ public class Subtraction : OperationBase
     }
 
     protected override double Calculate() => _operand1.ToResult() - _operand2.ToResult();
+
     protected override void AppendSentence(StringBuilder stringBuilder)
     {
-        throw new NotImplementedException();
+        AppendSentence(stringBuilder, _operand1);
+        stringBuilder.Append(" minus ");
+        AppendSentence(stringBuilder, _operand2);
     }
 
     protected override void AppendMath(StringBuilder stringBuilder)

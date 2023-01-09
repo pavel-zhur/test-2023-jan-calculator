@@ -11,6 +11,9 @@ internal static class Extensions
     /// <param name="elements">The collection of elements.</param>
     /// <param name="stringBuilder">The string builder to print the elements to.</param>
     /// <param name="print">The delegate to print an element.</param>
+    /// <example>A and B</example>
+    /// <example>A, B, and C</example>
+    /// <example>A, B, C, and D</example>
     public static void PrintMultiple<T>(
         this IReadOnlyList<T> elements,
         StringBuilder stringBuilder,
@@ -27,11 +30,11 @@ internal static class Extensions
             {
                 if (i < elements.Count - 1)
                 {
-                    stringBuilder.Append(", and ");
+                    stringBuilder.Append(", ");
                 }
                 else
                 {
-                    stringBuilder.Append(", ");
+                    stringBuilder.Append(", and ");
                 }
             }
 

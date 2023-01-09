@@ -1,13 +1,13 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Test.Calculator.Operations;
 
-namespace Test.Calculator.Tests;
+namespace Test.Calculator.Tests.MathTests;
 
 /// <summary>
-/// Tests of the <see cref="Fraction"/> operation.
+/// Tests of the <see cref="Division"/> operation.
 /// </summary>
 [TestClass]
-public class FractionTests
+public class DivisionTests
 {
     /// <summary>
     /// Division by zero is expected to return a positive infinity.
@@ -15,15 +15,15 @@ public class FractionTests
     [TestMethod]
     public void DivisionByZero()
     {
-        Assert.AreEqual(double.PositiveInfinity, new Fraction(4, 0).ToResult());
+        Assert.AreEqual(double.PositiveInfinity, new Division(4, 0).ToResult());
     }
 
     /// <summary>
     /// A regular division.
     /// </summary>
     [TestMethod]
-    public void RegularFraction()
+    public void RegularDivision()
     {
-        Assert.AreEqual(3d, new Fraction(6, 2).ToResult());
+        Assert.AreEqual(3d, new Division(6, 2).ToResult());
     }
 }

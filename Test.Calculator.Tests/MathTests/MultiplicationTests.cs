@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Test.Calculator.Operations;
 
-namespace Test.Calculator.Tests;
+namespace Test.Calculator.Tests.MathTests;
 
 /// <summary>
 /// Tests of the <see cref="Multiplication"/> operation.
