@@ -59,9 +59,15 @@ public class Faculty : OperationBase
         return Enumerable.Range(1, intOperand).Aggregate(1d, (x, y) => x * y);
     }
 
-    protected override void AppendMathInternal(StringBuilder stringBuilder)
+    protected override void AppendSentence(StringBuilder stringBuilder)
     {
-        AppendMath(stringBuilder, _operand);
+        stringBuilder.Append("faculty of ");
+        AppendSentence(stringBuilder, _operand);
+    }
+
+    protected override void AppendMath(StringBuilder stringBuilder)
+    {
+        AppendMathWithParentheses(stringBuilder, _operand);
         stringBuilder.Append("!");
     }
 }

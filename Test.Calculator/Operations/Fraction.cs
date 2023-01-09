@@ -23,8 +23,13 @@ public class Fraction : OperationBase
     }
 
     protected override double Calculate() => _operand1 / _operand2;
+    
+    protected override void AppendSentence(StringBuilder stringBuilder)
+    {
+        AppendMath(stringBuilder);
+    }
 
-    protected override void AppendMathInternal(StringBuilder stringBuilder)
+    protected override void AppendMath(StringBuilder stringBuilder)
     {
         stringBuilder.AppendFormat("{0}/{1}", _operand1, _operand2);
     }

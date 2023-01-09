@@ -22,7 +22,12 @@ public class Constant : OperationBase
 
     protected override double Calculate() => _value;
     
-    protected override void AppendMathInternal(StringBuilder stringBuilder)
+    protected override void AppendSentence(StringBuilder stringBuilder)
+    {
+        AppendMath(stringBuilder);
+    }
+
+    protected override void AppendMath(StringBuilder stringBuilder)
     {
         stringBuilder.Append(_value);
     }

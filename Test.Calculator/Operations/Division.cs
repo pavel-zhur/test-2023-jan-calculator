@@ -23,11 +23,19 @@ public class Division : OperationBase
     }
 
     protected override double Calculate() => _operand1.ToResult() / _operand2.ToResult();
-    
-    protected override void AppendMathInternal(StringBuilder stringBuilder)
+
+    protected override void AppendSentence(StringBuilder stringBuilder)
     {
-        AppendMath(stringBuilder, _operand1);
+        stringBuilder.Append("division of ");
+        AppendSentence(stringBuilder, _operand1);
+        stringBuilder.Append(" by ");
+        AppendSentence(stringBuilder, _operand2);
+    }
+
+    protected override void AppendMath(StringBuilder stringBuilder)
+    {
+        AppendMathWithParentheses(stringBuilder, _operand1);
         stringBuilder.Append(" / ");
-        AppendMath(stringBuilder, _operand2);
+        AppendMathWithParentheses(stringBuilder, _operand2);
     }
 }

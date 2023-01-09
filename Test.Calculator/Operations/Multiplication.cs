@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Test.Calculator.Operations.Base;
+using Test.Calculator.Tools;
 
 namespace Test.Calculator.Operations;
 
@@ -26,14 +27,21 @@ public class Multiplication : OperationBase
     protected override double Calculate()
         => _operands.Aggregate(1d, (x, y) => x * y.ToResult());
 
-    protected override void AppendMathInternal(StringBuilder stringBuilder)
+    protected override void AppendSentence(StringBuilder stringBuilder)
     {
-        for (var index = 0; index < _operands.Count; index++)
+        stringBuilder.Append("multiplication of ");
+
+        _operands.PrintMultiple(stringBuilder, x => AppendSentence(stringBuilder, x));
+    }
+
+    protected override void AppendMath(StringBuilder stringBuilder)
+    {
+        for (var i = 0; i < _operands.Count; i++)
         {
-            if (index > 0)
+            if (i > 0)
                 stringBuilder.Append(" * ");
 
-            AppendMath(stringBuilder, _operands[index]);
+            AppendMathWithParentheses(stringBuilder, _operands[i]);
         }
     }
 }

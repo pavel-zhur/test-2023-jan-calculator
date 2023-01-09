@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Test.Calculator.Exceptions;
 
 namespace Test.Calculator.Operations.Base;
 
@@ -37,8 +38,48 @@ public abstract class OperationBase
     {
         var result = ToResult();
         StringBuilder stringBuilder = new();
-        AppendMath(stringBuilder);
+        AppendMathWithParentheses(stringBuilder);
         stringBuilder.AppendFormat(" = {0}", result);
+        return stringBuilder.ToString();
+    }
+
+    /// <summary>
+    /// Prints the expression in full, with the English language. Does not throw exceptions.
+    /// </summary>
+    /// <returns>The result sentence.</returns>
+    public string PrintSentence()
+    {
+        StringBuilder stringBuilder = new();
+        AppendSentence(stringBuilder);
+
+        try
+        {
+            var result = ToResult();
+
+            if (double.IsPositiveInfinity(result))
+            {
+                stringBuilder.Append(
+                    " could not be calculated precisely, the result value is too high. A division by zero is probable.");
+            }
+            else if (!double.IsNormal(result))
+            {
+                stringBuilder.AppendFormat(
+                    " could not be calculated precisely, the result value is {0}.", result);
+            }
+            else
+            {
+                stringBuilder.AppendFormat(" is {0}", result);
+            }
+        }
+        catch (OverflowException)
+        {
+            stringBuilder.Append(" calculation result in an overflow.");
+        }
+        catch (MathException ex)
+        {
+            stringBuilder.AppendFormat(" could not be calculated precisely. {0}", ex.Message);
+        }
+
         return stringBuilder.ToString();
     }
 
@@ -49,34 +90,51 @@ public abstract class OperationBase
     protected abstract double Calculate();
 
     /// <summary>
-    /// Prints the expression with the math language, without the parentheses.
+    /// Prints the expression with the English language, without the parentheses.
     /// </summary>
     /// <param name="stringBuilder">The string builder to append the expression to.</param>
-    protected abstract void AppendMathInternal(StringBuilder stringBuilder);
+    protected abstract void AppendSentence(StringBuilder stringBuilder);
 
     /// <summary>
     /// Appends the given operation to the given string builder.
     /// </summary>
     /// <param name="stringBuilder">The string builder to append to.</param>
     /// <param name="operationBase">The operation to append to.</param>
-    /// <remarks>This method is needed because <see cref="AppendMath(System.Text.StringBuilder)"/> is protected, making it public or protected internal is not correct.</remarks>
-    protected static void AppendMath(StringBuilder stringBuilder, OperationBase operationBase)
+    /// <remarks>This method is needed because <see cref="AppendSentence(System.Text.StringBuilder)"/> is protected, making it public or protected internal is not correct.</remarks>
+    protected static void AppendSentence(StringBuilder stringBuilder, OperationBase operationBase)
     {
-        operationBase.AppendMath(stringBuilder);
+        operationBase.AppendSentence(stringBuilder);
+    }
+
+    /// <summary>
+    /// Prints the expression with the math language, without the parentheses.
+    /// </summary>
+    /// <param name="stringBuilder">The string builder to append the expression to.</param>
+    protected abstract void AppendMath(StringBuilder stringBuilder);
+
+    /// <summary>
+    /// Appends the given operation to the given string builder.
+    /// </summary>
+    /// <param name="stringBuilder">The string builder to append to.</param>
+    /// <param name="operationBase">The operation to append to.</param>
+    /// <remarks>This method is needed because <see cref="AppendMathWithParentheses(System.Text.StringBuilder)"/> is protected, making it public or protected internal is not correct.</remarks>
+    protected static void AppendMathWithParentheses(StringBuilder stringBuilder, OperationBase operationBase)
+    {
+        operationBase.AppendMathWithParentheses(stringBuilder);
     }
 
     /// <summary>
     /// Appends this operation to the string builder in math language.
     /// </summary>
     /// <param name="stringBuilder">The string builder to append to.</param>
-    private void AppendMath(StringBuilder stringBuilder)
+    private void AppendMathWithParentheses(StringBuilder stringBuilder)
     {
         if (AddParenthesesOnPrinting)
         {
             stringBuilder.Append("(");
         }
 
-        AppendMathInternal(stringBuilder);
+        AppendMath(stringBuilder);
     
         if (AddParenthesesOnPrinting)
         {
