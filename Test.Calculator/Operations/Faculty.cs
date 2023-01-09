@@ -18,7 +18,7 @@ public class Faculty : OperationBase
 
         if (doubleOperand < 0)
         {
-            throw new NegativeFactorialException(doubleOperand);
+            throw new NegativeFacultyException(doubleOperand);
         }
 
         if (doubleOperand is double.PositiveInfinity)
@@ -45,7 +45,7 @@ public class Faculty : OperationBase
 
         if (intOperand != doubleOperand) // not an integer
         {
-            throw new NonIntegerFactorialException(doubleOperand);
+            throw new NonIntegerFacultyException(doubleOperand);
         }
 
         return Enumerable.Range(1, intOperand).Aggregate(1d, (x, y) => x * y);

@@ -67,7 +67,7 @@ namespace Test.Calculator.Tests
         [DataRow(0d + 5.6d + 5.8d - 0.4d)] // known bug.
         public void NonInteger_Throws(double nonInteger)
         {
-            Assert.ThrowsException<NonIntegerFactorialException>(() => new Faculty(nonInteger).ToResult());
+            Assert.ThrowsException<NonIntegerFacultyException>(() => new Faculty(nonInteger).ToResult());
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Test.Calculator.Tests
         [DataRow(-10d)]
         public void Negative(double negative)
         {
-            Assert.ThrowsException<NegativeFactorialException>(() => new Faculty(negative).ToResult());
+            Assert.ThrowsException<NegativeFacultyException>(() => new Faculty(negative).ToResult());
         }
     }
 }
