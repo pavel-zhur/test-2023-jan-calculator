@@ -1,4 +1,5 @@
-﻿using Test.Calculator.Operations.Base;
+﻿using System.Text;
+using Test.Calculator.Operations.Base;
 
 namespace Test.Calculator.Operations;
 
@@ -24,4 +25,15 @@ public class Sum : OperationBase
 
     protected override double Calculate()
         => _operands.Sum(x => x.ToResult());
+
+    protected override void AppendMathInternal(StringBuilder stringBuilder)
+    {
+        for (var index = 0; index < _operands.Count; index++)
+        {
+            if (index > 0)
+                stringBuilder.Append(" + ");
+
+            AppendMath(stringBuilder, _operands[index]);
+        }
+    }
 }

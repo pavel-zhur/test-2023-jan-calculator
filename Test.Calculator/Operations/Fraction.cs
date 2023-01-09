@@ -1,4 +1,5 @@
-﻿using Test.Calculator.Operations.Base;
+﻿using System.Text;
+using Test.Calculator.Operations.Base;
 
 namespace Test.Calculator.Operations;
 
@@ -22,4 +23,9 @@ public class Fraction : OperationBase
     }
 
     protected override double Calculate() => _operand1 / _operand2;
+
+    protected override void AppendMathInternal(StringBuilder stringBuilder)
+    {
+        stringBuilder.AppendFormat("{0}/{1}", _operand1, _operand2);
+    }
 }

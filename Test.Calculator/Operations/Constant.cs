@@ -1,4 +1,5 @@
-﻿using Test.Calculator.Operations.Base;
+﻿using System.Text;
+using Test.Calculator.Operations.Base;
 
 namespace Test.Calculator.Operations;
 
@@ -9,6 +10,8 @@ public class Constant : OperationBase
 {
     private readonly double _value;
 
+    protected override bool AddParenthesesOnPrinting => false;
+
     /// <summary>
     /// Creates a new <see cref="Constant"/> operation instance.
     /// </summary>
@@ -18,4 +21,9 @@ public class Constant : OperationBase
     }
 
     protected override double Calculate() => _value;
+    
+    protected override void AppendMathInternal(StringBuilder stringBuilder)
+    {
+        stringBuilder.Append(_value);
+    }
 }

@@ -1,4 +1,5 @@
-﻿using Test.Calculator.Operations.Base;
+﻿using System.Text;
+using Test.Calculator.Operations.Base;
 
 namespace Test.Calculator.Operations;
 
@@ -22,4 +23,11 @@ public class Division : OperationBase
     }
 
     protected override double Calculate() => _operand1.ToResult() / _operand2.ToResult();
+    
+    protected override void AppendMathInternal(StringBuilder stringBuilder)
+    {
+        AppendMath(stringBuilder, _operand1);
+        stringBuilder.Append(" / ");
+        AppendMath(stringBuilder, _operand2);
+    }
 }

@@ -23,4 +23,19 @@ public class MainTestsGiven
         Assert.AreEqual(24, new Faculty(4).ToResult());
         Assert.AreEqual(1.5d, new Multiplication(new Fraction(9, 4), new Fraction(2, 3)).ToResult());
     }
+
+    /// <summary>
+    /// new Sum(5.2, 1.5).print() should return (5.2 + 1.5) = 6.7  .
+    /// new Division(30, new Sum(2, 3)).print() should return (30 / (2 + 3)) = 6
+    /// new Faculty(4).print() should return  (4!) = 24  .
+    /// new Multiplication(new Fraction(6,4), new Fraction(2,3)).print() should return ((9/4) * (2/3)) = 1.5
+    /// </summary>
+    [TestMethod]
+    public void Print()
+    {
+        Assert.AreEqual("(5.2 + 1.5) = 6.7", new Sum(5.2, 1.5).Print());
+        Assert.AreEqual("(30 / (2 + 3)) = 6", new Division(30, new Sum(2, 3)).Print());
+        Assert.AreEqual("(4!) = 24", new Faculty(4).Print());
+        Assert.AreEqual("((9/4) * (2/3)) = 1.5", new Multiplication(new Fraction(9, 4), new Fraction(2, 3)).Print());
+    }
 }

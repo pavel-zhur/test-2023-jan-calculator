@@ -1,4 +1,5 @@
-﻿using Test.Calculator.Exceptions;
+﻿using System.Text;
+using Test.Calculator.Exceptions;
 using Test.Calculator.Operations.Base;
 
 namespace Test.Calculator.Operations;
@@ -56,5 +57,11 @@ public class Faculty : OperationBase
         }
 
         return Enumerable.Range(1, intOperand).Aggregate(1d, (x, y) => x * y);
+    }
+
+    protected override void AppendMathInternal(StringBuilder stringBuilder)
+    {
+        AppendMath(stringBuilder, _operand);
+        stringBuilder.Append("!");
     }
 }
