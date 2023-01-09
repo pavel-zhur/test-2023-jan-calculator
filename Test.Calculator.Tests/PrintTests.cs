@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Test.Calculator.Exceptions;
 using Test.Calculator.Operations;
 using Test.Calculator.Operations.Base;
