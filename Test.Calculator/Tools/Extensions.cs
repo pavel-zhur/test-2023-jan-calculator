@@ -4,6 +4,13 @@ namespace Test.Calculator.Tools;
 
 internal static class Extensions
 {
+    /// <summary>
+    /// Prints the enumeration of elements with normal English language.
+    /// </summary>
+    /// <typeparam name="T">The element type.</typeparam>
+    /// <param name="elements">The collection of elements.</param>
+    /// <param name="stringBuilder">The string builder to print the elements to.</param>
+    /// <param name="print">The delegate to print an element.</param>
     public static void PrintMultiple<T>(
         this IReadOnlyList<T> elements,
         StringBuilder stringBuilder,
