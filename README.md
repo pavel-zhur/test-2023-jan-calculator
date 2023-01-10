@@ -11,6 +11,19 @@ I don't publish the task definition as I think they wouldn't be happy with that.
 
 ## Design Decisions
 
+### General design approach
+
+- All public methods of the library are documented
+- Null safety checked correctly
+- Exceptions are handled
+- Unit tests are written
+- Negative tests exist
+- Edge values of `double` are handled
+- Exceptions thrown have meaningful messages
+- A user is able to extend the library, an example provided
+- All tests given in the task definition are green, see `Test.Calculator.Tests.MainTestsGiven`
+- One known bug is documented
+
 ### Lazy calculation
 
 I've decided to go with the lazy calculation, because otherwise I would have to do CPU-heavy work in the constructors, which is generally not recommended.
@@ -65,17 +78,21 @@ However I did not want to make `AppendMathWithParentheses` and `AppendSentence` 
 And since I intended to make the library extensible, I could not make those methods `protected` or `protected internal` either (it would not work: since the `OperationBase` is a universal type for the arguments, the children wouldn't be able to call those).
 So I decided to hide the implementation details from the users of the library and pass this recursive action as a delegate.
 
-### General design approach
+## Known issues
 
-- All public methods of the library are documented
-- Null safety checked correctly
-- Exceptions are handled
-- Unit tests are written
-- Negative tests exist
-- Edge values of `double` are handled
-- Exceptions thrown have meaningful messages
-- A user is able to extend the library, an example provided
-- All tests given in the task definition are green, see `Test.Calculator.Tests.MainTestsGiven`
+I do not handle slight precision errors, for example:
+- `((5.6 + 5.8) - 0.4) = 10.999999999999998`
+
+It leads to the wrong `Faculty` behavior:
+- `Console.WriteLine(new Faculty(5.6d + 5.8d - 0.4d).PrintSentence());`
+- `faculty of 10.999999999999998 could not be calculated precisely. A faculty of a non-integer 10.999999999999998 could not be calculated, only whole numbers are supported.`
+
+I thought since one of the requirements were to use a double, I should rely on that type, and trying to handle those correctly would cause incorrect handling of other valid cases. For example:
+- `new Division(new Subtraction(1000000000000000, .2d), 100000000000000).Print()`;
+- `((1000000000000000 - 0.2) / 100000000000000) = 9.999999999999998`
+
+Which is the correct behavior.
+To handle both correctly would be quite complex, so I've decided to skip that and just document it.
 
 ## Output example
 
