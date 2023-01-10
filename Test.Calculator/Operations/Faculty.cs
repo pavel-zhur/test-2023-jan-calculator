@@ -66,9 +66,9 @@ public class Faculty : OperationBase
         AppendSentence(stringBuilder, _operand);
     }
 
-    protected override void AppendMath(StringBuilder stringBuilder)
+    protected override void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
-        AppendMathWithParentheses(stringBuilder, _operand);
+        appendChild(_operand);
         stringBuilder.Append('!');
     }
 }

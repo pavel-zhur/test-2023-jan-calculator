@@ -26,10 +26,15 @@ public class Fraction : OperationBase
     
     protected override void AppendSentence(StringBuilder stringBuilder)
     {
-        AppendMath(stringBuilder);
+        Append(stringBuilder);
     }
 
-    protected override void AppendMath(StringBuilder stringBuilder)
+    protected override void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild)
+    {
+        Append(stringBuilder);
+    }
+
+    private void Append(StringBuilder stringBuilder)
     {
         stringBuilder.AppendFormat("{0}/{1}", _operand1, _operand2);
     }

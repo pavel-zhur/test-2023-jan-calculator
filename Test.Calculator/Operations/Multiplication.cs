@@ -37,14 +37,14 @@ public class Multiplication : OperationBase
         _operands.PrintMultiple(stringBuilder, x => AppendSentence(stringBuilder, x));
     }
 
-    protected override void AppendMath(StringBuilder stringBuilder)
+    protected override void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
         for (var i = 0; i < _operands.Count; i++)
         {
             if (i > 0)
                 stringBuilder.Append(" * ");
 
-            AppendMathWithParentheses(stringBuilder, _operands[i]);
+            appendChild(_operands[i]);
         }
     }
 }

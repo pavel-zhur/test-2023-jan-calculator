@@ -24,10 +24,10 @@ public class Constant : OperationBase
     
     protected override void AppendSentence(StringBuilder stringBuilder)
     {
-        AppendMath(stringBuilder);
+        stringBuilder.Append(_value);
     }
 
-    protected override void AppendMath(StringBuilder stringBuilder)
+    protected override void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
         stringBuilder.Append(_value);
     }

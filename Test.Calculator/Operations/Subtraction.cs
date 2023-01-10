@@ -31,10 +31,10 @@ public class Subtraction : OperationBase
         AppendSentence(stringBuilder, _operand2);
     }
 
-    protected override void AppendMath(StringBuilder stringBuilder)
+    protected override void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
-        AppendMathWithParentheses(stringBuilder, _operand1);
+        appendChild(_operand1);
         stringBuilder.Append(" - ");
-        AppendMathWithParentheses(stringBuilder, _operand2);
+        appendChild(_operand2);
     }
 }

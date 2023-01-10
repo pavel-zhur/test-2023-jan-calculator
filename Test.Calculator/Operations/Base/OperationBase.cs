@@ -110,18 +110,8 @@ public abstract class OperationBase
     /// Prints the expression with the math language, without the parentheses.
     /// </summary>
     /// <param name="stringBuilder">The string builder to append the expression to.</param>
-    protected abstract void AppendMath(StringBuilder stringBuilder);
-
-    /// <summary>
-    /// Appends the given operation to the given string builder.
-    /// </summary>
-    /// <param name="stringBuilder">The string builder to append to.</param>
-    /// <param name="operationBase">The operation to append to.</param>
-    /// <remarks>This method is needed because <see cref="AppendMathWithParentheses(System.Text.StringBuilder)"/> is protected, making it public or protected internal is not correct.</remarks>
-    protected static void AppendMathWithParentheses(StringBuilder stringBuilder, OperationBase operationBase)
-    {
-        operationBase.AppendMathWithParentheses(stringBuilder);
-    }
+    /// <param name="appendChild">An action to call to send a child operation to the string builder.</param>
+    protected abstract void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild);
 
     /// <summary>
     /// Appends this operation to the string builder in math language.
@@ -134,7 +124,7 @@ public abstract class OperationBase
             stringBuilder.Append('(');
         }
 
-        AppendMath(stringBuilder);
+        AppendMath(stringBuilder, x => x.AppendMathWithParentheses(stringBuilder));
     
         if (AddParenthesesOnPrinting)
         {
