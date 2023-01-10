@@ -24,6 +24,6 @@ public class SumTests
     [TestMethod]
     public void RegularSum()
     {
-        Assert.AreEqual(8d, new Division(6, 2).ToResult());
+        Assert.AreEqual(3d, new Division(6, 2).ToResult());
     }
 }
