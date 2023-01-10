@@ -9,8 +9,6 @@ namespace Test.Calculator.Operations;
 /// </summary>
 public class Multiplication : OperationBase
 {
-    private readonly IReadOnlyList<OperationBase> _operands;
-
     /// <summary>
     /// Creates a new instance of the <see cref="Multiplication"/> operation.
     /// </summary>
@@ -24,27 +22,32 @@ public class Multiplication : OperationBase
         if (operands == null) throw new ArgumentNullException(nameof(operands));
         if (operands.Contains(null)) throw new ArgumentNullException(nameof(operands));
 
-        _operands = operands.Prepend(operand2).Prepend(operand1).ToArray();
+        Operands = operands.Prepend(operand2).Prepend(operand1).ToArray();
     }
 
+    /// <summary>
+    /// The operands collection. Contains at least two elements.
+    /// </summary>
+    public IReadOnlyList<OperationBase> Operands { get; }
+
     protected override double Calculate()
-        => _operands.Aggregate(1d, (x, y) => x * y.ToResult());
+        => Operands.Aggregate(1d, (x, y) => x * y.ToResult());
 
     protected override void AppendSentence(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
         stringBuilder.Append("multiplication of ");
 
-        _operands.PrintMultiple(stringBuilder, appendChild);
+        Operands.PrintMultiple(stringBuilder, appendChild);
     }
 
     protected override void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
-        for (var i = 0; i < _operands.Count; i++)
+        for (var i = 0; i < Operands.Count; i++)
         {
             if (i > 0)
                 stringBuilder.Append(" * ");
 
-            appendChild(_operands[i]);
+            appendChild(Operands[i]);
         }
     }
 }

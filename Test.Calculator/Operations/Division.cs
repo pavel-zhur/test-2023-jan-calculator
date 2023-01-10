@@ -8,34 +8,41 @@ namespace Test.Calculator.Operations;
 /// </summary>
 public class Division : OperationBase
 {
-    private readonly OperationBase _operand1;
-    private readonly OperationBase _operand2;
-
     /// <summary>
     /// Creates a new <see cref="Division"/> operation instance.
     /// </summary>
-    /// <param name="operand1">The left operand.</param>
-    /// <param name="operand2">The right operand.</param>
-    public Division(OperationBase operand1, OperationBase operand2)
+    /// <param name="left">The left operand.</param>
+    /// <param name="right">The right operand.</param>
+    public Division(OperationBase left, OperationBase right)
     {
-        _operand1 = operand1 ?? throw new ArgumentNullException(nameof(operand1));
-        _operand2 = operand2 ?? throw new ArgumentNullException(nameof(operand2));
+        Left = left ?? throw new ArgumentNullException(nameof(left));
+        Right = right ?? throw new ArgumentNullException(nameof(right));
     }
 
-    protected override double Calculate() => _operand1.ToResult() / _operand2.ToResult();
+    /// <summary>
+    /// The left operand.
+    /// </summary>
+    public OperationBase Left { get; }
+
+    /// <summary>
+    /// The right operand.
+    /// </summary>
+    public OperationBase Right { get; }
+
+    protected override double Calculate() => Left.ToResult() / Right.ToResult();
 
     protected override void AppendSentence(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
         stringBuilder.Append("division of ");
-        appendChild(_operand1);
+        appendChild(Left);
         stringBuilder.Append(" by ");
-        appendChild(_operand2);
+        appendChild(Right);
     }
 
     protected override void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
-        appendChild(_operand1);
+        appendChild(Left);
         stringBuilder.Append(" / ");
-        appendChild(_operand2);
+        appendChild(Right);
     }
 }

@@ -8,21 +8,28 @@ namespace Test.Calculator.Operations;
 /// </summary>
 public class Fraction : OperationBase
 {
-    private readonly double _operand1;
-    private readonly double _operand2;
-
     /// <summary>
     /// Creates a new instance of the <see cref="Fraction"/> operation.
     /// </summary>
-    /// <param name="operand1">The left operand.</param>
-    /// <param name="operand2">The right operand.</param>
-    public Fraction(double operand1, double operand2)
+    /// <param name="numerator">The top operand, numerator.</param>
+    /// <param name="denominator">The bottom operand, denominator.</param>
+    public Fraction(double numerator, double denominator)
     {
-        _operand1 = operand1;
-        _operand2 = operand2;
+        Numerator = numerator;
+        Denominator = denominator;
     }
 
-    protected override double Calculate() => _operand1 / _operand2;
+    /// <summary>
+    /// The top operand, numerator.
+    /// </summary>
+    public double Numerator { get; }
+
+    /// <summary>
+    /// The bottom operand, denominator.
+    /// </summary>
+    public double Denominator { get; }
+
+    protected override double Calculate() => Numerator / Denominator;
     
     protected override void AppendSentence(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
@@ -36,6 +43,6 @@ public class Fraction : OperationBase
 
     private void Append(StringBuilder stringBuilder)
     {
-        stringBuilder.AppendFormat("{0}/{1}", _operand1, _operand2);
+        stringBuilder.AppendFormat("{0}/{1}", Numerator, Denominator);
     }
 }

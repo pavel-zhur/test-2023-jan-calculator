@@ -9,20 +9,23 @@ namespace Test.Calculator.Operations;
 /// </summary>
 public class Faculty : OperationBase
 {
-    private readonly OperationBase _operand;
-
     /// <summary>
     /// Creates a new instance of the <see cref="Faculty"/> operation.
     /// </summary>
     /// <param name="operand">The faculty operand.</param>
     public Faculty(OperationBase operand)
     {
-        _operand = operand ?? throw new ArgumentNullException(nameof(operand));
+        Operand = operand ?? throw new ArgumentNullException(nameof(operand));
     }
+
+    /// <summary>
+    /// The operand.
+    /// </summary>
+    public OperationBase Operand { get; }
 
     protected override double Calculate()
     {
-        var doubleOperand = _operand.ToResult();
+        var doubleOperand = Operand.ToResult();
 
         if (doubleOperand < 0)
         {
@@ -63,12 +66,12 @@ public class Faculty : OperationBase
     protected override void AppendSentence(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
         stringBuilder.Append("faculty of ");
-        appendChild(_operand);
+        appendChild(Operand);
     }
 
     protected override void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
-        appendChild(_operand);
+        appendChild(Operand);
         stringBuilder.Append('!');
     }
 }
