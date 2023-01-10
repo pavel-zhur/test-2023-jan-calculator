@@ -1,4 +1,5 @@
-﻿using Test.Calculator.Operations;
+﻿using Test.Calculator.App;
+using Test.Calculator.Operations;
 using Test.Calculator.Operations.Base;
 
 // see output.txt
@@ -20,6 +21,10 @@ PrintMathAndSentence(
 PrintMathAndSentence(
     "A known bug example:",
     new Subtraction(new Sum(5.6, 5.8), 0.4));
+
+PrintMathAndSentence(
+    "A custom operation example:",
+    new Sum(3, new Logarithm(9, new Fraction(6, 2))));
 
 
 void PrintMathAndSentence(string title, OperationBase operation)

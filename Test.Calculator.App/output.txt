@@ -13,3 +13,7 @@ faculty of multiplication of division of 5 by 2 and 2 is 120
 A known bug example:
 ((5.6 + 5.8) - 0.4) = 10.999999999999998
 sum of 5.6 and 5.8 minus 0.4 is 10.999999999999998
+
+A custom operation example:
+(3 + (9 log (6/2))) = 5
+sum of 3 and logarithm of 9 to the base 6/2 is 5
