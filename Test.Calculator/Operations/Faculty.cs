@@ -60,10 +60,10 @@ public class Faculty : OperationBase
         return Enumerable.Range(1, intOperand).Aggregate(1d, (x, y) => x * y);
     }
 
-    protected override void AppendSentence(StringBuilder stringBuilder)
+    protected override void AppendSentence(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
         stringBuilder.Append("faculty of ");
-        AppendSentence(stringBuilder, _operand);
+        appendChild(_operand);
     }
 
     protected override void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild)

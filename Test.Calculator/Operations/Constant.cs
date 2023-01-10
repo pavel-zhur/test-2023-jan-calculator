@@ -22,7 +22,7 @@ public class Constant : OperationBase
 
     protected override double Calculate() => _value;
     
-    protected override void AppendSentence(StringBuilder stringBuilder)
+    protected override void AppendSentence(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
         stringBuilder.Append(_value);
     }

@@ -30,11 +30,11 @@ public class Multiplication : OperationBase
     protected override double Calculate()
         => _operands.Aggregate(1d, (x, y) => x * y.ToResult());
 
-    protected override void AppendSentence(StringBuilder stringBuilder)
+    protected override void AppendSentence(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
         stringBuilder.Append("multiplication of ");
 
-        _operands.PrintMultiple(stringBuilder, x => AppendSentence(stringBuilder, x));
+        _operands.PrintMultiple(stringBuilder, appendChild);
     }
 
     protected override void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild)

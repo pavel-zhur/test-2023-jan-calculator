@@ -24,7 +24,7 @@ public class Fraction : OperationBase
 
     protected override double Calculate() => _operand1 / _operand2;
     
-    protected override void AppendSentence(StringBuilder stringBuilder)
+    protected override void AppendSentence(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
         Append(stringBuilder);
     }

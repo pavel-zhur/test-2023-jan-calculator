@@ -30,11 +30,11 @@ public class Sum : OperationBase
     protected override double Calculate()
         => _operands.Sum(x => x.ToResult());
 
-    protected override void AppendSentence(StringBuilder stringBuilder)
+    protected override void AppendSentence(StringBuilder stringBuilder, Action<OperationBase> appendChild)
     {
         stringBuilder.Append("sum of ");
 
-        _operands.PrintMultiple(stringBuilder, x => AppendSentence(stringBuilder, x));
+        _operands.PrintMultiple(stringBuilder, appendChild);
     }
 
     protected override void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild)
