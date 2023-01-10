@@ -97,14 +97,16 @@ public abstract class OperationBase
     protected abstract void AppendSentence(StringBuilder stringBuilder, Action<OperationBase> appendChild);
 
     /// <summary>
-    /// Prints the expression with the math language, without the parentheses.
+    /// Prints the expression with the math language, inside the parentheses.
     /// </summary>
     /// <param name="stringBuilder">The string builder to append the expression to.</param>
     /// <param name="appendChild">An action to call to send a child operation to the string builder.</param>
     protected abstract void AppendMath(StringBuilder stringBuilder, Action<OperationBase> appendChild);
 
     /// <summary>
+    /// Main entry point to printing an operation.
     /// Appends this operation to the string builder in math language.
+    /// Adds parentheses, if needed.
     /// </summary>
     /// <param name="stringBuilder">The string builder to append to.</param>
     private void AppendMathWithParentheses(StringBuilder stringBuilder)
