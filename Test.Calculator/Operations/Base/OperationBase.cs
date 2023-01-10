@@ -26,7 +26,7 @@ public abstract class OperationBase
     /// <returns>The result.</returns>
     public double ToResult()
     {
-        EnsureCalculated();
+        _value ??= Calculate();
         return _value!.Value;
     }
 
@@ -140,14 +140,5 @@ public abstract class OperationBase
         {
             stringBuilder.Append(')');
         }
-    }
-
-    /// <summary>
-    /// Calculates the <see cref="_value"/> if it has not been calculated yet.
-    /// This is the lazy implementation.
-    /// </summary>
-    private void EnsureCalculated()
-    {
-        _value ??= Calculate();
     }
 }
