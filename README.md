@@ -17,7 +17,7 @@ I've decided to go with the lazy calculation, because otherwise I would have to 
 
 ### Different naming
 
-Although you the required names method names were `.toResult()`, `.print()`, `.printSentence()`, I've decided to go with `.ToResult()`, `.Print()`, `.PrintSentence()` to align with the recommended naming conventions for .net.
+Although you the required method names were `.toResult()`, `.print()`, `.printSentence()`, I've decided to go with `.ToResult()`, `.Print()`, `.PrintSentence()` to align with the recommended naming conventions for .net.
 
 ### Not handling division by zero in the `.ToResult()` and `.Print()`
 
@@ -75,6 +75,7 @@ So I decided to hide the implementation details from the users of the library an
 - Edge values of `double` are handled
 - Exceptions thrown have meaningful messages
 - A user is able to extend the library, an example provided
+- All tests given in the task definition are green, see `Test.Calculator.Tests.MainTestsGiven`
 
 ## Output example
 
