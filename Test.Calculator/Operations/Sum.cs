@@ -19,7 +19,10 @@ public class Sum : OperationBase
     /// <param name="operands">Any additional operands.</param>
     public Sum(OperationBase operand1, OperationBase operand2, params OperationBase[] operands)
     {
+        if (operand1 == null) throw new ArgumentNullException(nameof(operand1));
+        if (operand2 == null) throw new ArgumentNullException(nameof(operand2));
         if (operands == null) throw new ArgumentNullException(nameof(operands));
+        if (operands.Contains(null)) throw new ArgumentNullException(nameof(operands));
 
         _operands = operands.Prepend(operand2).Prepend(operand1).ToArray();
     }

@@ -17,7 +17,7 @@ public class Faculty : OperationBase
     /// <param name="operand">The faculty operand.</param>
     public Faculty(OperationBase operand)
     {
-        _operand = operand;
+        _operand = operand ?? throw new ArgumentNullException(nameof(operand));
     }
 
     protected override double Calculate()
